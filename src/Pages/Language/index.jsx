@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
+
 const App = () => {
   const [sourceLanguage, setSourceLanguage] = useState(null);
   const [targetLanguage, setTargetLanguage] = useState(null);
+  const navigation = useNavigation();
 
   const languages = [
     {code: 'en', name: 'English', flag: 'https://flagcdn.com/w40/gb.png'},
@@ -14,9 +17,9 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Text style={styles.headerText}>Vāṇītyā</Text>
-      </View>
+      </View> */}
 
       {/* Language Selection */}
       <View style={styles.section}>
@@ -59,6 +62,7 @@ const App = () => {
       {/* Continue Button */}
       <View style={styles.footer}>
         <TouchableOpacity
+          onPress={() => navigation.navigate('DifficultyScreen')}
           style={[
             styles.button,
             sourceLanguage && targetLanguage
@@ -74,7 +78,7 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#121212', paddingTop: 40},
+  container: {backgroundColor: '#121212',  height:'100%'  },
   header: {alignItems: 'center', marginBottom: 20},
   headerText: {fontSize: 22, color: '#FFFFFF', fontWeight: 'bold'},
   headerTitle: {
